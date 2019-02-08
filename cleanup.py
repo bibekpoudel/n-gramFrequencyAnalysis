@@ -7,7 +7,7 @@ def cleanup():
     for line in file:
         for a in line:
             if a.lower() in string.ascii_lowercase:
-                text.append(a)
+                text.append(a.lower())
     cleanfile = open("clean_"+filename, "w" )
     cleanfile.write(''.join(text))
 
