@@ -34,47 +34,53 @@ void get_pos(std::ifstream & in, std::string & string, int streamsize){
 
 int main(int argc, char *argv[])
 {
-    map letter;
-    int nth = atoi(argv[2]);
-   
-    std::ifstream input(argv[1]);
-     // Current string(character) being read from file
-    std::string cursor;
     
-    cursor.resize(nth);
+    int num = atoi(argv[2]);
+    std::string filename = argv[1];    
+    for(int nth = 1; nth <= num; ++nth ){
+        std::cout << nth << "-grams" << '\n';
+        map letter;
+        std::ifstream input(filename);
+        // Current string(character) being read from file
+        std::string cursor;
     
-    // Position in stream
-    int pos=1;
+        cursor.resize(nth);
     
-    while( !input.eof() ){
-        // Get a ngram from the file stream
-        get_pos(input, cursor, nth );
+        // Position in stream
+        int pos=1;
+    
+        while( !input.eof() ){
+            // Get a ngram from the file stream
+            get_pos(input, cursor, nth );
         
-        if (!input.eof())
-        {
-            letter[cursor]++;
-        } 
-        else
-        {
-            break;
+            if (!input.eof())
+            {
+                letter[cursor]++;
+            } 
+            else
+            {
+                break;
+            }
+        
+            //keeps track of position in stream
+            input.seekg( pos++ );
+        
         }
-        
-        //keeps track of position in stream
-        input.seekg( pos++ );
-        
-    }
    
-    input.close();    
+        input.close();    
     
 
-    std::vector<pair> v;
+        std::vector<pair> v;
 
-    MapToVec(letter, v);
-    std::sort(v.begin(), v.end(), lt);
+        MapToVec(letter, v);
+        std::sort(v.begin(), v.end(), lt);
     
-    for (auto it = v.begin(); it!=v.end(); ++it)
-    {
-        std::cout << it->first << " : " << it->second << '\n';
+        for (auto it = v.begin(); it!=v.end(); ++it)
+        {
+            std::cout << it->first << " : " << it->second << '\n';
+        }
+        letter.clear();
+        v.clear();
     }
     
     return 0;
