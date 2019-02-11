@@ -21,7 +21,7 @@ int lt(const pair p0, const pair p1){
 }
 
 
-int main()
+int main(int argc, char *argv[])
 {
     map letter;
     // for(int i = 0; i < 26; ++i)
@@ -30,7 +30,7 @@ int main()
     // }
 
     char character;
-    std::fstream fin("clean_file.txt", std::fstream::in);
+    std::fstream fin(std::string(argv[1]), std::fstream::in);
     while (fin >> std::noskipws >> character)
     {
         std::string s;
