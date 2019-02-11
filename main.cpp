@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <unordered_map>
 #include <fstream>
-
+#include <stdlib.h>
 
 typedef std::unordered_map<std::string, int> map; 
 typedef std::pair<std::string, int> pair;
@@ -21,28 +21,51 @@ int lt(const pair p0, const pair p1){
 }
 
 
-int main()
+//funtion to get position of every n characters
+void get_pos(std::ifstream & in, std::string & string, int streamsize){
+        int pos=0;
+        while(pos<streamsize){
+                in >> string[pos];
+                ++pos;
+        }
+}
+
+
+
+int main(int argc, char *argv[])
 {
     map letter;
-    // for(int i = 0; i < 26; ++i)
-    // {
-    //     letter[(char(i+97))] = 0;
-    // }
-
-    char character;
-    std::fstream fin("clean_file.txt", std::fstream::in);
-    while (fin >> std::noskipws >> character)
-    {
-        std::string s;
-        s.push_back(character);
-        letter[s]++; 
+    int nth = atoi(argv[2]);
+   
+    std::ifstream input(argv[1]);
+     // Current string(character) being read from file
+    std::string cursor;
+    
+    cursor.resize(nth);
+    
+    // Position in stream
+    int pos=1;
+    
+    while( !input.eof() ){
+        // Get a ngram from the file stream
+        get_pos(input, cursor, nth );
+        
+        if (!input.eof())
+        {
+            letter[cursor]++;
+        } 
+        else
+        {
+            break;
+        }
+        
+        //keeps track of position in stream
+        input.seekg( pos++ );
+        
     }
+   
+    input.close();    
     
-    
-    // for(const auto &pair: letter)
-    // {
-    //     std::cout << pair.first << " : " << pair.second << '\n'; 
-    // }
 
     std::vector<pair> v;
 
