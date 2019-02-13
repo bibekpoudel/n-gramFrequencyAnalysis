@@ -36,9 +36,16 @@ int main(int argc, char *argv[])
 {
     
     int num = atoi(argv[2]);
-    std::string filename = argv[1];    
+    std::string filename = argv[1];
+    int dotpos = filename.find('.');
+    std::string newfilename = "./data/" + filename.substr(0,dotpos) + "_data.txt";
+    std::cout << newfilename << '\n';
+    std::ofstream NewFile;
+    NewFile.open(newfilename.c_str(), std::ios_base::app);
+    
     for(int nth = 1; nth <= num; ++nth ){
         std::cout << nth << "-grams" << '\n';
+        NewFile <<  nth << "-grams" << '\n';
         map letter;
         std::ifstream input(filename);
         // Current string(character) being read from file
@@ -48,7 +55,6 @@ int main(int argc, char *argv[])
     
         // Position in stream
         int pos=1;
-    
         while( !input.eof() ){
             // Get a ngram from the file stream
             get_pos(input, cursor, nth );
@@ -69,19 +75,23 @@ int main(int argc, char *argv[])
    
         input.close();    
     
-
+        
         std::vector<pair> v;
 
         MapToVec(letter, v);
         std::sort(v.begin(), v.end(), lt);
     
+        letter.clear();
+        
         for (auto it = v.begin(); it!=v.end(); ++it)
         {
             std::cout << it->first << " : " << it->second << '\n';
+            NewFile << it->first << " : " << it->second << '\n';
+            
         }
-        letter.clear();
         v.clear();
     }
+    NewFile.close();
     
     return 0;
 }
