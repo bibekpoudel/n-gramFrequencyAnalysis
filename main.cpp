@@ -37,8 +37,9 @@ int main(int argc, char *argv[])
     
     int num = atoi(argv[2]);
     std::string filename = argv[1];
-    int dotpos = filename.find('.');
-    std::string newfilename = "./data/" + filename.substr(0,dotpos) + "_data.txt";
+    int dotpos = filename.find("_");
+    int dotpos2 = filename.find(".t");
+    std::string newfilename = "./data/" + filename.substr(dotpos + 1, (dotpos2 - (dotpos + 1))) + "_data.txt";
     std::cout << newfilename << '\n';
     std::ofstream NewFile;
     NewFile.open(newfilename.c_str(), std::ios_base::app);
@@ -85,7 +86,7 @@ int main(int argc, char *argv[])
         
         for (auto it = v.begin(); it!=v.end(); ++it)
         {
-            std::cout << it->first << " : " << it->second << '\n';
+            //std::cout << it->first << " : " << it->second << '\n';
             NewFile << it->first << " : " << it->second << '\n';
             
         }

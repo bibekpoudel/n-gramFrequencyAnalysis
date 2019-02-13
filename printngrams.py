@@ -1,8 +1,10 @@
 import os
 
-def printngrams(num, filename):
-    command = "./a.out %s " % filename 
-    os.system(command + str(num))
+def printngrams(num, c, filename):
+    command = "./a.out ./%s/%s " % (c, filename)
+    command += str(num)
+    #print command 
+    os.system(command)
 
     # command = "./a.out clean_10001.txt " + str(num)
     # os.system(command)
