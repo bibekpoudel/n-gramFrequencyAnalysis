@@ -1,4 +1,4 @@
-//Compile with g++ -g main.cpp -L/usr/local/lib/ -lboost_filesystem -lboost_system
+//Compile with g++ -g iter.cpp -o iter -L/usr/local/lib/ -lboost_filesystem -lboost_system
 
 
 #include <boost/filesystem.hpp>

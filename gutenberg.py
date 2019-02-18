@@ -16,7 +16,7 @@ from printngrams import *
 dirname = "clean-textfiles"
 # os.system('mkdir %s' % dirname) # create folder for cleaned text files in CWD
 #os.system('mkdir data')
-os.system('g++ main.cpp')
+os.system(' g++ -g main.cpp -L/usr/local/lib/ -lboost_filesystem -lboost_system')
 
 # # REMOVE ALL REPEAT FILES FROM DOWNLOADS
 # for c, d, f in os.walk('aleph.gutenberg.org'):
@@ -61,7 +61,8 @@ os.system('g++ main.cpp')
 
 # FINDS N-GRAMS FOR ALL FILES IN clean_textfiles FOLDER
 num_ngrams = 6
-for c, d, f in os.walk('%s' % dirname):
-    for element in f:
-        printngrams(num_ngrams, c, element)
-        #print "ELEMENT IS: ", element
+printngrams(num_ngrams)
+# for c, d, f in os.walk('%s' % dirname):
+#     for element in f:
+#         printngrams(num_ngrams, c, element)
+#         #print "ELEMENT IS: ", element
