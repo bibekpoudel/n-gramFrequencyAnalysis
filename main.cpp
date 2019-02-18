@@ -45,8 +45,6 @@ int main(int argc, char *argv[])
     NewFile.open(newfilename.c_str(), std::ios_base::app);
     
     for(int nth = 1; nth <= num; ++nth ){
-        std::cout << nth << "-grams" << '\n';
-        NewFile <<  nth << "-grams" << '\n';
         map letter;
         std::ifstream input(filename);
         // Current string(character) being read from file
@@ -87,7 +85,7 @@ int main(int argc, char *argv[])
         for (auto it = v.begin(); it!=v.end(); ++it)
         {
             //std::cout << it->first << " : " << it->second << '\n';
-            NewFile << it->first << " : " << it->second << '\n';
+            NewFile << it->first << ":" << it->second << '\n';
             
         }
         v.clear();

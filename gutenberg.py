@@ -30,7 +30,7 @@ os.system('g++ main.cpp')
 
         
 # # # UNTAR ALL ZIP FILES IN ALEPH.GUTENBERG.ORG FOLDER
-# for c, d, f in os.walk('temp'):#'aleph.gutenberg.org'):
+# for c, d, f in os.walk('aleph.gutenberg.org'):
 #     for element in f:
 #         try:
 #             i = element.index('.zip')
@@ -40,9 +40,9 @@ os.system('g++ main.cpp')
 #             continue
 
 
-# # CLEANS UP EACH TEXT FILE & PLACES IN clean_textfiles FOLDER,
-# # THEN DELETES OLD TEXT FILE
-# for c, d, f in os.walk('temp'):
+# CLEANS UP EACH TEXT FILE & PLACES IN clean_textfiles FOLDER,
+# THEN DELETES OLD TEXT FILE
+# for c, d, f in os.walk('aleph.gutenberg.org'):
 #     for element in f:
 #         try:
 #             j = element.index('.txt')
@@ -60,7 +60,7 @@ os.system('g++ main.cpp')
 
 
 # FINDS N-GRAMS FOR ALL FILES IN clean_textfiles FOLDER
-num_ngrams = 1
+num_ngrams = 6
 for c, d, f in os.walk('%s' % dirname):
     for element in f:
         printngrams(num_ngrams, c, element)
