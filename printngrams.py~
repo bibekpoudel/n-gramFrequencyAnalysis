@@ -1,7 +1,0 @@
-import os
-
-def printngrams(num, c, filename):
-    command = "./a.out ./%s/%s " % (c, filename)
-    command += str(num)
-    #print command 
-    os.system(command)
